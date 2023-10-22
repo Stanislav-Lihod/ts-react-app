@@ -12,7 +12,11 @@
     //позволяет использовать определнную функцию из импорта а не импортировать весь файл
     "allowSyntheticDefaultImports": true,
     // позволяет работать с пакетами которые используют common.js как с обычными пакетами с помощью import вместо require()
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "*" : ["./src/*"]
+    },
   },
   "ts-node": {
     "compilerOptions": {
