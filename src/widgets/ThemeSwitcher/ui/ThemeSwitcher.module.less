@@ -1,0 +1,28 @@
+.themeSwitcher{
+  width: 51px;
+  height: 25px;
+  background-color: gray;
+  border-radius: 99px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 5px;
+
+  &::after{
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: darkgray;
+    display: inline-block;
+    transition: .3s;
+    border-radius: 99px;
+    margin-left: 3px;
+  }
+}
+
+.dark{
+  &::after{
+    transform: translateX(25px);
+  }
+}

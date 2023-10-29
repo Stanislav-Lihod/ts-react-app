@@ -1,26 +1,19 @@
-import {Routes, Route, Link} from 'react-router-dom'
-import { Suspense } from 'react';
-
 import "./styles/index.less"
 import { useTheme } from './providers/ThemeProvider/lib/useTheme';
-import { className } from '../shared/lib/className/className';
-import { AboutPage } from 'pages/AboutPage';
-import { MainPage } from 'pages/MainPage';
+import { classNames } from '../shared/lib/className/classNames';
+import { AppRouter } from './providers/router';
+import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from "widgets/Sidebar/ui/Sidebar/Sidebar";
 
 const App = () => {
-  const {theme, toggleTheme} = useTheme()
+  const {theme} = useTheme()
   return (
-    <div className={className('app',{}, [theme])}>
-      <button onClick={toggleTheme}>qwe</button>
-      <Link to={'/'}>Home</Link>
-      <Link to={'/about'}>About</Link>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route path='/about' element={<AboutPage/>}/>
-          <Route path='/' element={<MainPage/>}/>
-        </Routes>
-      </Suspense>
-      
+    <div className={classNames('app',{}, [theme])}>
+      <Navbar/>
+      <div className="main">
+        <Sidebar/>
+        <AppRouter/>
+      </div>      
     </div>
   );
 };
