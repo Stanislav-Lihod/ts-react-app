@@ -1,24 +1,14 @@
-import {render} from 'react-dom';
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom';
 import App from 'app/App';
-import { ThemsProvider } from 'app/providers/ThemeProvider';
+import {ThemsProvider} from 'app/providers/ThemeProvider';
 
-import { createRoot } from 'react-dom/client';
+import {createRoot} from 'react-dom/client';
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-    <BrowserRouter>
-      <ThemsProvider>
-        <App/>
-      </ThemsProvider>
-    </BrowserRouter>
-  );
-
-// render(
-//   <BrowserRouter>
-//     <ThemsProvider>
-//       <App/>
-//     </ThemsProvider>
-//   </BrowserRouter>,
-//   document.getElementById('root')
-// )
+	<BrowserRouter>
+		<ThemsProvider>
+			<App/>
+		</ThemsProvider>
+	</BrowserRouter>,
+);
