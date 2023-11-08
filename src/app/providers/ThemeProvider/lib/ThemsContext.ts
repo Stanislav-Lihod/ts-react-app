@@ -6,10 +6,13 @@ export enum Theme {
 }
 
 export type ThemContext = {
-	theme?: Theme;
-	setTheme?: (theme: Theme) => void;
+	theme: Theme;
+	setTheme: (theme: Theme) => void;
 };
 
-export const ThemsContext = createContext<ThemContext>({});
+export const ThemsContext = createContext<ThemContext>({
+  theme: Theme.LIGHT,
+  setTheme: () => {},
+});
 
 export const LOCAL_STORAGE_THEME_DATA = 'theme';
