@@ -3,14 +3,17 @@ import App from 'app/App';
 import {ThemsProvider} from 'app/providers/ThemeProvider';
 
 import {createRoot} from 'react-dom/client';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 const container = document.getElementById('root');
 if (container) {
   const root = createRoot(container);
   root.render(
     <BrowserRouter>
-      <ThemsProvider>
-        <App/>
-      </ThemsProvider>
+      <ErrorBoundary>
+        <ThemsProvider>
+          <App/>
+        </ThemsProvider>
+      </ErrorBoundary>
     </BrowserRouter>,
   ); 
 }
