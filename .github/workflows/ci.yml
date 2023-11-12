@@ -5,8 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Вывести информацию
-        run: |
+      - run: |
           BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
           USER_NAME=$(echo "${{ github.actor }}")
 
