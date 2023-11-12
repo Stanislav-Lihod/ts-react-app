@@ -29,3 +29,11 @@ jobs:
 
       - name: Start unit tests
         run: npm run test
+
+      - name: Starting StoryBook
+        run: npm run sb:build
+
+      - name: Start SS tests with LOKI
+        run: npm run test-loki:ci
+
+      - run: echo "This job's status is ${{ job.status }}."
