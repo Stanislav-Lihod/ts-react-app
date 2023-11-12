@@ -31,7 +31,7 @@ jobs:
         run: npm run test
       
       - name: testingings
-        run: concurrently --kill-others --raw --success first "npm run sb" "npm run test-loki"
+        run: npm run testLoki
         
 
       # - name: Starting StoryBook

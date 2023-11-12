@@ -12,7 +12,7 @@
     "test-loki:ci": "npx loki --requireReference --reactUri file:./storybook-static",
     "sb": "storybook dev -p 6006 -c ./config/storybook",
     "sb:build": "storybook build -c ./config/storybook",
-    "testLoki": "- concurrently --kill-others --raw --success first \"npm run sb\" \"npm run test-loki:ci\" \"deelay\""
+    "testLoki": "concurrently --kill-others --raw --success first \"npm run sb\" \"npm run test-loki\""
   },
   "keywords": [],
   "author": "",
