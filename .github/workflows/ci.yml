@@ -1,27 +1,31 @@
-name: CI
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Pipelines
+run-name: ${{ github.actor }} merge ${{github.ref_name}} in ${{github.repository}}  🚀
+on: 
+  push: 
+    branches: '*'
+  pull_request: 
+    branches: [master]
 jobs:
-  Explore-GitHub-Actions:
+  pipeline:
     runs-on: ubuntu-latest
-    steps:
-      - run: |
-          BRANCH_NAME=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///')
-          USER_NAME=$(echo "${{ github.actor }}")
+    strategy:
+      matrix:
+        node-version: [18.x]
 
-          echo "${USER_NAME} Запустил ${BRANCH_NAME} в мастер"
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - run: echo "🔎 The name of your branch is ${{ github.head_ref }} and your repository is ${{ github.repository }}."
-      - run: echo "🔎 The name of your branch is ${{ github.run_id }} and your repository is ${{ github.repository }}."
-      - run: echo "🔎 The name of your branch is ${{ github.base_ref }} and your repository is ${{ github.repository }}."
-      - run: echo "name $(echo ${{ github.ref }} | sed 's/refs\/heads\///')"
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v2
+
+      - name: Starting Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v1
+        with: 
+          node-version: ${{matrix.node-version}}
+
+      - name: Install dependency
+        run: npm install
+      
+      - name: Build project
+        run:  npm run build:prod
+
+      - name: Start unit tests
+        run: npm run test
