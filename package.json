@@ -11,7 +11,8 @@
     "test-loki:ok": "npx loki approve",
     "test-loki:ci": "npx loki --requireReference --reactUri file:./storybook-static",
     "sb": "storybook dev -p 6006 -c ./config/storybook",
-    "sb:build": "storybook build -c ./config/storybook"
+    "sb:build": "storybook build -c ./config/storybook",
+    "testLoki": "- concurrently --kill-others --raw --success first \"npm run sb\" \"npm run test-loki:ci\" \"deelay\""
   },
   "keywords": [],
   "author": "",
@@ -40,6 +41,7 @@
     "@types/webpack": "^5.28.2",
     "@types/webpack-bundle-analyzer": "^4.6.3",
     "@types/webpack-dev-server": "^4.7.2",
+    "concurrently": "^8.2.2",
     "css-loader": "^6.8.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",

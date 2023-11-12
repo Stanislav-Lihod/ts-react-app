@@ -29,12 +29,16 @@ jobs:
 
       - name: Start unit tests
         run: npm run test
+      
+      - name: testingings
+        run: concurrently --kill-others --raw --success first "npm run sb" "npm run test-loki"
+        
 
-      - name: Starting StoryBook
-        run: npm run sb:build
+      # - name: Starting StoryBook
+      #   run: npm run sb:build
 
-      - name: Start SS tests with LOKI
-        run: npm run test-loki:ci
+      # - name: Start SS tests with LOKI
+      #   run: npm run test-loki:ci
 
       - name: Status job
         run: echo "This job's status is ${{ job.status }}."
