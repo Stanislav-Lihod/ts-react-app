@@ -31,8 +31,7 @@ jobs:
         run: npm run test
       
       - name: testingings
-        run: npm run testLoki
-        
+        run: npm run testLoki        
 
       # - name: Starting StoryBook
       #   run: npm run sb:build
