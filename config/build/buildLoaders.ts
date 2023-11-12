@@ -1,6 +1,6 @@
 import {type RuleSetRule} from 'webpack';
 import {type BuildOptions} from './types/config';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import buildCssLoader from './loaders/buildCssLoaders';
 
 export function buildLoaders({isDev}: BuildOptions): RuleSetRule[] {
 	const svgLoader = {
@@ -23,23 +23,7 @@ export function buildLoaders({isDev}: BuildOptions): RuleSetRule[] {
 		exclude: /node_modules/,
 	};
 
-	const styleLoader = {
-		test: /\.less$/i,
-		use: [
-			isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-			{
-				loader: 'css-loader',
-				options: {
-					modules: {
-						auto: (resourcePath: string) => resourcePath.includes('.module.'),
-						// LocalIdentName: isDev ? "[path][name]__[local]--[hash:base64:6]" : '[hash:base64:6]'
-						localIdentName: isDev ? '[local]--[hash:base64:6]' : '[hash:base64:8]',
-					},
-				},
-			},
-			'less-loader',
-		],
-	};
+	const styleLoader = buildCssLoader(isDev);
 
 	return [
 		svgLoader,
