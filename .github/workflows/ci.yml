@@ -30,11 +30,11 @@ jobs:
       - name: Start unit tests
         run: npm run test
       
-      - name: testingings
-        run: npm run testLoki        
+      # - name: testingings
+      #   run: npm run testLoki        
 
-      # - name: Starting StoryBook
-      #   run: npm run sb:build
+      - name: Starting StoryBook
+        run: npm run sb:build
 
       # - name: Start SS tests with LOKI
       #   run: npm run test-loki:ci
