@@ -38,6 +38,3 @@ jobs:
 
       # - name: Start SS tests with LOKI
       #   run: npm run test-loki:ci
-
-      - name: Status job
-        run: echo "This job's status is ${{ job.status }}."
