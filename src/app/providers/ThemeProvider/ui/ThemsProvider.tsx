@@ -1,7 +1,8 @@
 import {type FC, type ReactNode, useState, useMemo} from 'react';
 import {LOCAL_STORAGE_THEME_DATA, Theme, ThemsContext} from '../lib/ThemsContext';
 
-const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_DATA) as Theme || Theme.LIGHT;
+const storedState = JSON.parse(localStorage.NAVIGATION_UI_STATE || '{}');
+const defaultTheme = storedState.LOCAL_STORAGE_THEME_DATA as Theme || Theme.LIGHT;
 type Props = {
 	children: ReactNode;
 };

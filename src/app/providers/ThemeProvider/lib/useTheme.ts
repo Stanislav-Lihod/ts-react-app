@@ -12,7 +12,10 @@ export function useTheme(): useThemeResult {
 	const toggleTheme = () => {
 		const newTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
 		setTheme(newTheme);
-		localStorage.setItem(LOCAL_STORAGE_THEME_DATA, newTheme);
+
+    const navigationUIState: Record<string, any> = JSON.parse(localStorage.getItem('NAVIGATION_UI_STATE') || '{}');
+    navigationUIState[LOCAL_STORAGE_THEME_DATA] = newTheme
+    localStorage.setItem('NAVIGATION_UI_STATE', JSON.stringify(navigationUIState));
 	};
 
 	return {
