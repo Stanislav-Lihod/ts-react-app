@@ -1,0 +1,31 @@
+@import '../../../app/styles/animation/lazyBackground.less';
+
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: var(--bg-blur);
+  z-index: var(--modal-close-z);
+  opacity: 0;
+  transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  &.show{
+    z-index: var(--modal-open-z);
+    opacity: 1;
+    pointer-events: auto;
+    animation: lazy_background .3s ease .06s 1 normal forwards;
+  }
+
+  &-content{
+    background-color: var(--bg-sidebar);
+    padding: 20px;
+    min-width: 300px;
+    width: 60%;
+  }
+}
