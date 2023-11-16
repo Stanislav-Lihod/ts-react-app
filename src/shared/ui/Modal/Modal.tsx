@@ -13,7 +13,7 @@ interface ModalProps{
 
 export const Modal = ({className, children, isShow, onClose}: ModalProps) => {
   //Variables
-	const {theme} = useTheme();
+  const {theme} = useTheme();
   const body = useRef(document.body);
   const mods: Record<string,boolean> ={
     [cls.show]: isShow ?? false

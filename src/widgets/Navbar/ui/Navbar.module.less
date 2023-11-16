@@ -6,11 +6,14 @@
   justify-content: center;
   background-color: var(--bg-color);
   border-bottom: 1px solid var(--nb-border);
+  transition: border-bottom .3s, background-color .3s;
+  position: relative;
 
   .links{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
   }
 
   a{
@@ -26,5 +29,12 @@
     &:hover{
       opacity: .5;
     }
+  }
+
+  .authorization{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
