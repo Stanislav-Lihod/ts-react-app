@@ -1,5 +1,5 @@
 name: Pipelines
-run-name: ${{ github.actor }} merge ${{github.ref_name}} in ${{github.repository}}  🚀
+run-name: ${{ github.actor }} merge ${{github.head_ref}} in ${{github.repository}}  🚀
 on: 
   push: 
     branches: '*'
