@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom';
 import {classNames} from 'shared/lib/className/classNames';
 import cls from './Navbar.module.less';
-import {Modal} from 'shared/ui/Modal/Modal';
 import {useCallback, useState} from 'react';
 import {Button} from 'shared/ui/Button/Button';
+import {LoginModal} from "features/AuthByUsername";
 
 type NavbarProps = {
 	className?: string;
@@ -25,11 +25,10 @@ export const Navbar = ({className}: NavbarProps) => {
       <div className={cls.authorization}>
         <Button 
           onClick={onAuthModeToggle}>Login</Button>
-        <Modal 
+        <LoginModal
           isShow={isAuthModal}
-          onClose={onAuthModeToggle}>
-          Login Fields
-        </Modal>
+          onClose={onAuthModeToggle}
+        />
       </div>
     </div>
   )

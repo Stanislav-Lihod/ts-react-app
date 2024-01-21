@@ -1,5 +1,5 @@
 import cls from './Button.module.less';
-import { ButtonHTMLAttributes, FC } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { classNames } from "shared/lib/className/classNames";
 
 export enum ButtonTheme{
@@ -12,7 +12,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
   theme?: ButtonTheme
 }
 
-export const Button: FC<ButtonProps> = (props) => {
+export const Button = (props: ButtonProps) => {
   const {
     children,
     className = '',

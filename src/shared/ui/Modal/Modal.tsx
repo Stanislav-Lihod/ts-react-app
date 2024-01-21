@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/className/classNames';
 import cls from './Modal.module.less';
-import { ReactNode, useCallback, useEffect, useRef } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Portal } from '../Portal/Portal';
 import { useTheme } from 'app/providers/ThemeProvider';
 
@@ -8,16 +8,18 @@ interface ModalProps{
   className?: string,
   children?: ReactNode,
   isShow?: boolean,
-  onClose?: ()=> void
+  onClose?: ()=> void,
+  lazy?: boolean
 }
 
-export const Modal = ({className, children, isShow, onClose}: ModalProps) => {
+export const Modal = ({className, children, isShow, onClose, lazy}: ModalProps) => {
   //Variables
   const {theme} = useTheme();
   const body = useRef(document.body);
   const mods: Record<string,boolean> ={
     [cls.show]: isShow ?? false
   }
+  const [isMounted, setIsMounted] = useState(false)
 
 
   // functions
@@ -45,7 +47,14 @@ export const Modal = ({className, children, isShow, onClose}: ModalProps) => {
     };
   }, [isShow, onCloseKeydown])
 
+  useEffect(() => {
+    isShow && setIsMounted(true)
+  }, [isShow]);
 
+
+  if (lazy && !isMounted){
+    return null
+  }
 
   return (
     <Portal>
