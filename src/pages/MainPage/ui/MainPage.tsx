@@ -4,7 +4,7 @@ import {Counter} from "entities/Counter";
 const MainPage = () => (
 	<div>
 		<h1>Main page</h1>
-		<Counter></Counter>
+		<Counter/>
 	</div>
 );
 
