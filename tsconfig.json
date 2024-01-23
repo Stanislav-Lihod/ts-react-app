@@ -1,28 +1,27 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    //подсвечивает все места где не указан тип
     "noImplicitAny": true,
     "module": "ESNext",
     "target": "es5",
     "jsx": "react-jsx",
-    // позволяет обрабатывать js (пример return(<div onClick>))
     "allowJs": true,
     "moduleResolution": "node",
-    //позволяет использовать определнную функцию из импорта а не импортировать весь файл
-    "allowSyntheticDefaultImports": true,
-    // позволяет работать с пакетами которые используют common.js как с обычными пакетами с помощью import вместо require()
-    "esModuleInterop": true,
     "baseUrl": ".",
-    "strictNullChecks": true,
     "paths": {
-      "*" : ["./src/*"]
+      "*": ["./src/*"]
     },
-    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
-  }
+  },
+  "include": [
+    "./config/jest/setupTests.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+  ]
 }
