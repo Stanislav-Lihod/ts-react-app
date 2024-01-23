@@ -31,9 +31,9 @@ jobs:
         run: npm run test
         if: always()    
 
-      - name: Starting StoryBook
-        run: npm run sb:build
-        if: always()
+#      - name: Starting StoryBook
+#        run: npm run sb:build
+#        if: always()
 
       # - name: Start SS tests with LOKI
       #   run: npm run test-loki:ci
