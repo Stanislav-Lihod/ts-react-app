@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import cls from './Sidebar.module.less';
 import { classNames } from 'shared/lib/className/classNames';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
@@ -7,21 +7,21 @@ type SidebarProps = {
 	className?: string;
 };
 
-export const Sidebar = ({className}: SidebarProps) => {
+export const Sidebar = memo(({className}: SidebarProps) => {
   const storedState = JSON.parse(localStorage.NAVIGATION_UI_STATE || '{}');
   const defaultStateCollapse = storedState.collapsSidebar === 'true' || false;
   const defaultWidthCollapse = storedState.widthSidebar ?? 'var(--sidebar-width)';
-  
-	const [isCollapsed, setCollapsed] = useState <boolean>(defaultStateCollapse);
+
+  const [isCollapsed, setCollapsed] = useState <boolean>(defaultStateCollapse);
   const [isHoveredButton, setHoveredButton] = useState <boolean> (false);
   const [isActiveButton, setActiveButton] = useState<boolean>(false);
   const [isHoveredResize, setHoveredResize] = useState<boolean>(false);
 
-	const onCollapsed = () => {
-		setCollapsed(prev => !prev);
+  const onCollapsed = () => {
+    setCollapsed(prev => !prev);
     setLocalStorage('collapsSidebar')
     !isCollapsed ? setCurrentWidthSidebar('var(--sidebar-width-collapse)') : setCurrentWidthSidebar(defaultWidthCollapse)
-	};
+  };
 
   const setLocalStorage = (itemName : string) =>{
     const navigationUIState: Record<string, any> = JSON.parse(localStorage.getItem('NAVIGATION_UI_STATE') || '{}');
@@ -74,19 +74,19 @@ export const Sidebar = ({className}: SidebarProps) => {
 
   useEffect(()=>{
     if (!isCollapsed) {
-      setLocalStorage('widthSidebar') 
+      setLocalStorage('widthSidebar')
     }
   }, [currentWidthSidebar])
 
   return (
-    <div 
+    <div
       onMouseEnter={()=>setActiveButton(true)}
       onMouseLeave={()=>setActiveButton(false)}
       data-testid="sidebar"
       style={{ width: currentWidthSidebar, transition: sideBarTransition }}
       className={classNames(cls.Sidebar, {[cls.collapsed]: isCollapsed}, [className ?? ''])}
     >
-      <div 
+      <div
         onMouseEnter={() => setHoveredResize(true)}
         onMouseLeave={() => setHoveredResize(false)}
         onMouseDown={handleMouseDown}
@@ -96,14 +96,14 @@ export const Sidebar = ({className}: SidebarProps) => {
           <div className={classNames(cls['resize-panel-resize-block-status'], {[cls.hover]: isHoveredResize})}></div>
         </div>
       </div>
-			
-      <div 
+
+      <div
         onMouseEnter={() => setHoveredButton(true)}
         onMouseLeave={() => setHoveredButton(false)}
         onClick={onCollapsed}
         className={classNames(cls['sidebar-button-wrapper'], {})}
       >
-        <button 
+        <button
           className={classNames(cls['sidebar-button'], {
             [cls.hide]: isCollapsed,
             [cls.hover]: isHoveredButton,
@@ -115,10 +115,10 @@ export const Sidebar = ({className}: SidebarProps) => {
         </button>
         <div>{isActiveButton}</div>
       </div>
-         
-			<div className={cls.switchers}>
-				<ThemeSwitcher/>
-			</div>
-		</div>
+
+      <div className={cls.switchers}>
+        <ThemeSwitcher/>
+      </div>
+    </div>
   );
-};
+});

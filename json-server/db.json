@@ -25,5 +25,13 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "firstName": "Stanislau",
+    "lastName": "Lihodievski",
+    "age": 29,
+    "currency": "EUR",
+    "country": "Lithuania",
+    "city": "Vilnius",
+    "username": "Stasias"
+  }
 }

@@ -1,10 +1,11 @@
 import {classNames} from "shared/lib/className/classNames";
 import cls from "./LoginModal.module.less"
 import {Modal} from "shared/ui/Modal/Modal";
-import {LoginForm} from "../LoginForm/LoginForm";
-import {useEffect} from "react";
+import {AsyncLoginForm as LoginForm} from "../LoginForm/LoginForm.async";
+import {Suspense, useEffect} from "react";
 import {useSelector} from "react-redux";
 import {getUserAuthData} from "entities/User";
+import {Loader} from "shared/ui/Loader/Loader";
 
 interface LoginModalProps{
   className?: string,
@@ -24,7 +25,9 @@ export const LoginModal = ({className, isShow, onClose}: LoginModalProps) => {
       onClose={onClose}
       lazy
     >
-      <LoginForm/>
+      <Suspense fallback={<Loader/>}>
+        <LoginForm/>
+      </Suspense>
     </Modal>
   );
 };

@@ -63,10 +63,7 @@ export const Modal = ({className, children, isShow, onClose, lazy}: ModalProps) 
         onClick={onCloseHandler}
         >
 
-        <div 
-          className={cls['modal-content']}
-          onClick={(e)=>e.stopPropagation()}
-        >
+        <div onClick={(e)=>e.stopPropagation()}>
           {children}
         </div>
 

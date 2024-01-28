@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import {classNames} from 'shared/lib/className/classNames';
 import cls from './Navbar.module.less';
-import {useCallback, useState} from 'react';
+import {memo, useCallback, useState} from 'react';
 import {Button} from 'shared/ui/Button/Button';
 import {LoginModal} from "features/AuthByUsername";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,7 +11,7 @@ type NavbarProps = {
 	className?: string;
 };
 
-export const Navbar = ({className}: NavbarProps) => {
+export const Navbar = memo(({className}: NavbarProps) => {
   const [isAuthModal, setIsAuthModal] = useState<boolean>(false)
   const authData = useSelector(getUserAuthData)
   const dispatch = useDispatch()
@@ -31,7 +31,8 @@ export const Navbar = ({className}: NavbarProps) => {
         <Link to={'/about'}>About</Link>
       </div>
       <div className={cls.authorization}>
-        <Button 
+        {authData && <Link to={'/profile'}>My Profile</Link>}
+        <Button
           onClick={authData ? inSignOutUser : onAuthModeToggle}>{authData ? 'Sign Out' : 'Login'}</Button>
         <LoginModal
           isShow={isAuthModal}
@@ -40,4 +41,4 @@ export const Navbar = ({className}: NavbarProps) => {
       </div>
     </div>
   )
-};
+});

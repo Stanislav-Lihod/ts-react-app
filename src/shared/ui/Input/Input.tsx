@@ -1,6 +1,6 @@
 import {classNames} from "shared/lib/className/classNames";
 import cls from "./Input.module.less"
-import React, {InputHTMLAttributes, useCallback, useState} from "react";
+import React, {InputHTMLAttributes, memo, useCallback, useState} from "react";
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 interface InputProps extends HTMLInputProps{
@@ -9,7 +9,7 @@ interface InputProps extends HTMLInputProps{
   onChange?: (value: string | number) => void
 }
 
-export const Input = (props: InputProps) => {
+export const Input = memo((props: InputProps) => {
   const {
     className,
     value,
@@ -44,4 +44,4 @@ export const Input = (props: InputProps) => {
       )}
     </div>
   );
-};
+});
